@@ -57,7 +57,7 @@ if __name__ == '__main__':
     model = WordEmbedding(args.type)
     if args.load_name != '':
 
-        domains = ['OC', 'OW', 'OY', 'PB', 'PM', 'PN']:
+        domains = ['OC', 'OW', 'OY', 'PB', 'PM', 'PN']
         for domain in domains:
             model.load(path=f'./embedding/{args.type}/{args.load_name}.bin')
             corpus = load(path='../data', domains=[domain])
