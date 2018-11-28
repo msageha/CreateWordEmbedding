@@ -25,7 +25,7 @@ class WordEmbedding:
         self.model = model
 
     def retrain(self, corpus, **kwargs):
-        self.model.train(sentences=corpus, total_examples=model.corpus_count, epochs=1)
+        self.model.train(sentences=corpus, total_examples=len(corpus), epochs=1)
 
     def save(self, path):
         print('- - - satart saving - - -')
