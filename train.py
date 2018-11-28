@@ -55,9 +55,9 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
 
-model = WordEmbedding(args.type)
+    model = WordEmbedding(args.type)
 
-corpus = load(path='../data')
-model.train(corpus, size=args.size, window=args.windows, min_count=args.min_count)
-model.save(path=f'./embedding/{args.type}/{args.save_name}.bin')
+    corpus = load(path='../data')
+    model.train(corpus, size=args.size, window=args.windows, min_count=args.min_count)
+    model.save(path=f'./embedding/{args.type}/{args.save_name}.bin')
 
