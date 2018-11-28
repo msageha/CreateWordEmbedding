@@ -17,9 +17,8 @@ def tokenizer(text):
         node = node.next
     return wakati
 
-def load(path='../data'):
+def load(path='../data', domains=['LB', 'OB', 'OC', 'OL', 'OM', 'OP', 'OT', 'OV', 'OW', 'OY', 'PB', 'PM', 'PN']):
     sentences = []
-    domains = ['LB', 'OB', 'OC', 'OL', 'OM', 'OP', 'OT', 'OV', 'OW', 'OY', 'PB', 'PM', 'PN']
     for domain in domains:
         print(domain)
         for file in os.listdir(f'{path}/{domain}'):
@@ -52,10 +51,20 @@ if __name__ == '__main__':
     parser.add_argument('--window', type=int, default=10, help='please specify window size')
     parser.add_argument('--min_count', type=int, default=5, help='please specify min count size of words')
     parser.add_argument('--save_name', type=str, help='save file name', required=True)
+    parser.add_argument('--load_name', type=str, help='load file name', default='')
     args = parser.parse_args()
 
     model = WordEmbedding(args.type)
+    if args.load_name != '':
 
-    corpus = load(path='../data')
-    model.train(corpus, size=args.size, window=args.window, min_count=args.min_count)
-    model.save(path=f'./embedding/{args.type}/{args.save_name}.bin')
+        domains = ['OC', 'OW', 'OY', 'PB', 'PM', 'PN']:
+        for domain in domains:
+            model.load(path=f'./embedding/{args.type}/{args.load_name}.bin')
+            corpus = load(path='../data', domains=[domain])
+            model.retrain(corpus)
+            model.save(path=f'./embedding/{args.type}/{args.save_name}_{domain}.bin')
+
+    else:
+        corpus = load(path='../data')
+        model.train(corpus, size=args.size, window=args.window, min_count=args.min_count)
+        model.save(path=f'./embedding/{args.type}/{args.save_name}.bin')

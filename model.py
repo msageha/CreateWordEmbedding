@@ -18,13 +18,19 @@ class WordEmbedding:
         self.EmbeddingFunc = EmbeddingFunc
 
     def train(self, corpus, size=200, **kwargs):
+        print('- - - satart training - - -')
         model = self.EmbeddingFunc(size=size, **kwargs)
         model.build_vocab(corpus)
         model.train(sentences=corpus, total_examples=model.corpus_count, epochs=1)
         self.model = model
 
+    def retrain(self, corpus, **kwargs):
+        self.model.train(sentences=corpus, total_examples=model.corpus_count, epochs=1)
+
     def save(self, path):
+        print('- - - satart saving - - -')
         self.model.save(path)
 
     def load(self, path):
+        print('- - - start loading - - -')
         self.model = self.EmbeddingFunc.load(path)
