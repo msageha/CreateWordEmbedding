@@ -5,11 +5,11 @@ class WordEmbedding:
     WordEmbeddingClass
     '''
     def __init__(self, mode='word2vec'):
-        if mode=='word2vec':
+        if mode=='Word2Vec':
             EmbeddingFunc = models.Word2Vec
-        elif mode=='fasttext':
+        elif mode=='FastText':
             EmbeddingFunc = models.FastText
-        elif mode=='doc2vec':
+        elif mode=='Doc2Vec':
             EmbeddingFunc = models.Doc2Vec
         else:
             print('error!!! please')
