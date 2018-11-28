@@ -28,4 +28,3 @@ class WordEmbedding:
 
     def load(self, path):
         self.model = self.EmbeddingFunc.load(path)
-
