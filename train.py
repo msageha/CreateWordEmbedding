@@ -51,13 +51,13 @@ if __name__ == '__main__':
     parser.add_argument('--size', type=int, default=200, help='embedding vector size')
     parser.add_argument('--window', type=int, default=10, help='please specify window size')
     parser.add_argument('--min_count', type=int, default=5, help='please specify min count size of words')
-    parser.add_argument('--save_name', type=str, help='save file name')
+    parser.add_argument('save_name', type=str, help='save file name')
     args = parser.parse_args()
 
 
     model = WordEmbedding(args.type)
 
     corpus = load(path='../data')
-    model.train(corpus, size=args.size, window=args.windows, min_count=args.min_count)
+    model.train(corpus, size=args.size, window=args.window, min_count=args.min_count)
     model.save(path=f'./embedding/{args.type}/{args.save_name}.bin')
 
