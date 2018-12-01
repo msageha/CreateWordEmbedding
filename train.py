@@ -37,12 +37,11 @@ def load_document(path='../data/corpus'):
         for file in os.listdir(f'{path}/{domain}'):
             with open(f'{path}/{domain}/{file}') as f:
                 for i, line in enumerate(f):
-                    tags = [file, i]
+                    tags = [file+'_line{0}'.format(str(i).zfill(4))]
                     sentence = tokenizer(line)
                     sen = TaggedDocument(words=sentence, tags=tags)
                     dataset.append(sen)
     return dataset
-
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='main function parser')
