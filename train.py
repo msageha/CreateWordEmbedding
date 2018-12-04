@@ -31,7 +31,7 @@ def load(path='../data/corpus', domains=['LB', 'OB', 'OC', 'OL', 'OM', 'OP', 'OT
 
 def load_document(path='../data/corpus'):
     dataset = []
-    domains = ['LB', 'OB', 'OC', 'OL', 'OM', 'OP', 'OT', 'OV', 'OW', 'OY', 'PB', 'PM', 'PN']
+    domains = ['OC', 'OW', 'OY', 'PB', 'PM', 'PN']#['LB', 'OB', 'OC', 'OL', 'OM', 'OP', 'OT', 'OV', 'OW', 'OY', 'PB', 'PM', 'PN']
     for domain in domains:
         print(domain)
         for file in os.listdir(f'{path}/{domain}'):
