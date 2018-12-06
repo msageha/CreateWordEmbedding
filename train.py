@@ -35,12 +35,15 @@ def load_document(path='../data/corpus/all'):
     for domain in domains:
         print(domain)
         for file in os.listdir(f'{path}/{domain}'):
+            document = []
             with open(f'{path}/{domain}/{file}') as f:
+                tags = [file]
                 for i, line in enumerate(f):
-                    tags = [file+'_line{0}'.format(str(i).zfill(4))]
+                    # tags = [file+'_line{0}'.format(str(i).zfill(4))]
                     sentence = tokenizer(line)
-                    sen = TaggedDocument(words=sentence, tags=tags)
-                    dataset.append(sen)
+                    document += sentence
+                sen = TaggedDocument(words=document, tags=tags)
+                dataset.append(sen)
     return dataset
 
 if __name__ == '__main__':
