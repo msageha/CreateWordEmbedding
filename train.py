@@ -31,7 +31,7 @@ def load(path='../data/corpus', domains=['LB', 'OB', 'OC', 'OL', 'OM', 'OP', 'OT
 
 def load_document(path='../data/corpus/all'):
     dataset = []
-    domains = ['OC', 'OW', 'OY', 'PB', 'PM', 'PN']#['LB', 'OB', 'OC', 'OL', 'OM', 'OP', 'OT', 'OV', 'OW', 'OY', 'PB', 'PM', 'PN']
+    domains = ['LB', 'OB', 'OC', 'OL', 'OM', 'OP', 'OT', 'OV', 'OW', 'OY', 'PB', 'PM', 'PN']
     for domain in domains:
         print(domain)
         for file in os.listdir(f'{path}/{domain}'):
@@ -67,7 +67,7 @@ if __name__ == '__main__':
             model.save(path=f'../data/embedding/{args.type}/{args.save_name}_{domain}.bin')
     else:
         if args.type == 'Doc2Vec':
-            corpus = load_document(path='../data/corpus/core')
+            corpus = load_document(path='../data/corpus/all')
         else:
             corpus = load(path='../data/corpus/all')
         model.train(corpus, size=args.size, window=args.window, min_count=args.min_count, epochs=args.epochs)
