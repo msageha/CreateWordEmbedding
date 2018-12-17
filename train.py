@@ -63,7 +63,7 @@ if __name__ == '__main__':
         domains = ['OC', 'OW', 'OY', 'PB', 'PM', 'PN']
         for domain in domains:
             model.load(path=f'../data/embedding/{args.type}/{args.load_name}.bin')
-            corpus = load(path='../data/corpus', domains=[domain])
+            corpus = load(path='../data/corpus/all', domains=[domain])
             model.retrain(corpus)
             model.save(path=f'../data/embedding/{args.type}/{args.save_name}_{domain}.bin')
     else:
