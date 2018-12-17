@@ -18,7 +18,7 @@ def tokenizer(text):
         node = node.next
     return wakati
 
-def load(path='../data/corpus', domains=['LB', 'OB', 'OC', 'OL', 'OM', 'OP', 'OT', 'OV', 'OW', 'OY', 'PB', 'PM', 'PN']):
+def load(path='../data/corpus/all', domains=['LB', 'OB', 'OC', 'OL', 'OM', 'OP', 'OT', 'OV', 'OW', 'OY', 'PB', 'PM', 'PN']):
     sentences = []
     for domain in domains:
         print(domain)
@@ -54,7 +54,8 @@ if __name__ == '__main__':
     parser.add_argument('--min_count', type=int, default=5, help='please specify min count size of words')
     parser.add_argument('--save_name', type=str, help='save file name', required=True)
     parser.add_argument('--load_name', type=str, help='load file name', default='')
-    parser.add_argument('--epochs', type=int, default=1, help='trainingepoch num')
+    parser.add_argument('--epochs', type=int, default=5, help='trainingepoch num')
+    parser.add_argument('--media', '-m', dest='media', nargs='+', type=str, default=['LB', 'OB', 'OC', 'OL', 'OM', 'OP', 'OT', 'OV', 'OW', 'OY', 'PB', 'PM', 'PN'], choices=['LB', 'OB', 'OC', 'OL', 'OM', 'OP', 'OT', 'OV', 'OW', 'OY', 'PB', 'PM', 'PN'], help='training media type')
     args = parser.parse_args()
 
     model = WordEmbedding(args.type)
@@ -69,6 +70,6 @@ if __name__ == '__main__':
         if args.type == 'Doc2Vec':
             corpus = load_document(path='../data/corpus/all')
         else:
-            corpus = load(path='../data/corpus/all')
+            corpus = load(path='../data/corpus/all', domains=args.media)
         model.train(corpus, size=args.size, window=args.window, min_count=args.min_count, epochs=args.epochs)
         model.save(path=f'../data/embedding/{args.type}/{args.save_name}.bin')
